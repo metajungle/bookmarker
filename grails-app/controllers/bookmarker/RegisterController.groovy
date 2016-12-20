@@ -13,17 +13,13 @@ class RegisterController extends grails.plugin.springsecurity.ui.RegisterControl
             return [registerCommand: new RegisterCommand()]
         }
 
-        print("Posted new user")
-
         if (registerCommand.hasErrors()) {
             return [registerCommand: registerCommand]
         }
 
-        print("No errors!")
-
         def user = uiRegistrationCodeStrategy.createUser(registerCommand)
         
-        // NOTE: disable email verification 
+        // NOTE: disable email verification for this demo application 
         
         String salt = saltSource instanceof NullSaltSource ? null : registerCommand.username
         RegistrationCode registrationCode = uiRegistrationCodeStrategy.register(user, registerCommand.password, salt)
@@ -33,6 +29,10 @@ class RegisterController extends grails.plugin.springsecurity.ui.RegisterControl
             flash.error = message(code: 'spring.security.ui.register.miscError')
             return [registerCommand: registerCommand]
         }
+        
+        // auto-matically unlock account when the account has successfully been created
+        user.accountLocked = false
+        user.save()
         
         /*
         sendVerifyRegistrationMail registrationCode, user, registerCommand.email

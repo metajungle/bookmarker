@@ -4,6 +4,8 @@
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'bookmarker.SecUser'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'bookmarker.SecUserSecRole'
 grails.plugin.springsecurity.authority.className = 'bookmarker.SecRole'
+grails.plugin.springsecurity.logout.postOnly = false
+grails.plugin.springsecurity.logout.afterLogoutUrl = '/'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
     [pattern: '/**', access: ['permitAll']], 
 //    [pattern: '/home', access: ['permitAll']], 

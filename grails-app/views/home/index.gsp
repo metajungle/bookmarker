@@ -7,8 +7,10 @@
 <body>
 
     <p>
-        Hello!
+        Welcome to the world of tomorrow!
     </p>
+
+    <g:img src="futurama-world.jpg"></g:img>
 
 </body>
 </html>

@@ -1,3 +1,5 @@
+$media-small: 768px;
+
 $color-background: #ffffff;
 $color-grey: #f0f0f0;
 
@@ -21,8 +23,11 @@ body {
 }
 
 .container-center {
-    width: 600px;
-    margin: auto;
+    @media screen and (min-width: $media-small) {
+        /* restrict size on larger screens */ 
+        width: 600px;
+        margin: auto;
+    }
 }
 
 .header {

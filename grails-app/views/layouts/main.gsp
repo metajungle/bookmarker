@@ -26,14 +26,21 @@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="${createLink(uri: '/')}">
                     BMd
                 </a>
             </div>
             <div class="collapse navbar-collapse">
                 <p class="navbar-text navbar-right">
                     <sec:ifLoggedIn>
-                        Signed in as <a href="#" class="navbar-link">Mark Otto</a>
+                        <g:link controller="logout">Logout</g:link>
+                    </sec:ifLoggedIn>
+                </p>
+                <p class="navbar-text navbar-right">
+                    <sec:ifLoggedIn>
+                        Signed in as 
+                        <strong><sec:loggedInUserInfo field="username"/></strong>
+                        
                     </sec:ifLoggedIn>
                     <sec:ifNotLoggedIn>
                         <g:link controller="login">Sign In</g:link>
