@@ -30,6 +30,14 @@ class RegisterController extends grails.plugin.springsecurity.ui.RegisterControl
             return [registerCommand: registerCommand]
         }
         
+        // assign the default ROLE_USER role to each user 
+        def roleUser = SecRole.findByAuthority('ROLE_USER')
+        if (roleUser != null) {
+            SecUserSecRole.create(user, roleUser)
+        } else {
+            log.error("Could not assign the default ROLE_USER role, user will not have access")
+        }
+        
         // auto-matically unlock account when the account has successfully been created
         user.accountLocked = false
         user.save()

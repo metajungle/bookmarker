@@ -18,7 +18,7 @@
     <div class="jumbotron">
         <div class="container">
             <h1>
-                Bookmarked
+                Bookmarker
             </h1>
         </div>
     </div>
@@ -27,10 +27,13 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="${createLink(uri: '/')}">
-                    BMd
+                    BMr
                 </a>
             </div>
             <div class="collapse navbar-collapse">
+                <p class="navbar-text">
+                    <g:link controller="home" action="history">History</g:link>
+                </p>
                 <p class="navbar-text navbar-right">
                     <sec:ifLoggedIn>
                         <g:link controller="logout">Logout</g:link>

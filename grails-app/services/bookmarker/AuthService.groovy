@@ -11,7 +11,6 @@ class AuthService {
      * @param username 
      */ 
     def registerSuccessfulLoginAttempt(String username) {
-        println("Username: " + username)
         // get user 
         def user = SecUser.findByUsername(username)
         if (user != null) {
