@@ -7,10 +7,16 @@
 <body>
 
     <p>
-        Welcome to the world of tomorrow!
+        An application with an API to save bookmarks 
     </p>
 
-    <g:img src="futurama-world.jpg"></g:img>
+    <p>
+        <g:img src="futurama-world.jpg"></g:img>
+    </p>
+
+    <p>
+        Welcome to the world of tomorrow!
+    </p>
 
 </body>
 </html>

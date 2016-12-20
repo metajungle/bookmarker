@@ -139,8 +139,81 @@ class ApiController {
             contentType: "application/json", status: HttpServletResponse.SC_BAD_REQUEST)
     }
     
+    /**
+     * API endpoint to retrieve bookmarks
+     *
+     */ 
     def getBookmarks() {
         
+        // default error response 
+        def error = [
+            status: "ERROR", 
+            message: "An error occurred when retrieving bookmarks"
+        ]
+        
+        // validate request method 
+        if (request.method == "POST") {
+            error.message = "This API endpoint only supports 'GET' requests"
+            return render(text: error as JSON, 
+                contentType: "application/json", status: HttpServletResponse.SC_BAD_REQUEST)
+        }
+        
+        // parameters 
+        String paramToken = params.get('token', '').trim()
+        int paramLimit = 10 
+        
+        // try to parse limit parameter 
+        try {
+            paramLimit = params.get('limit', 10).toInteger()
+        } catch (NumberFormatException e) {
+            ;
+        }
+            
+        // validate 
+        if (paramToken.equals('')) {
+            error.message = "Parameter 'token' was missing"
+            return render(text: error as JSON, 
+                contentType: "application/json", status: HttpServletResponse.SC_BAD_REQUEST)
+        }
+        
+        def token = ApiToken.findByToken(paramToken)
+        if (token == null) {
+            error.message = "Invalid 'token' value provided"
+            return render(text: error as JSON, 
+                contentType: "application/json", status: HttpServletResponse.SC_BAD_REQUEST)
+        }
+            
+        if (paramLimit < 1) {
+            paramLimit = 10
+        } else if (paramLimit > 50) {
+            paramLimit = 50
+        }
+            
+        // get bookmarks
+        def bookmarks = apiService.getBookmarks(paramToken, paramLimit)
+        
+        if (bookmarks != null) {
+            def success = [
+                status: "OK", 
+                message: "Bookmarks retreived", 
+                result: bookmarks.collect { bookmark -> 
+                    def res = [
+                        url: bookmark.getUrl()
+                    ]
+                    def title = bookmark.getTitle()
+                    if (title != null) {
+                        res['title'] = title
+                    }
+                    return res
+                }
+            ]
+            return render(text: success as JSON, 
+                contentType: "application/json", status: HttpServletResponse.SC_OK)
+        }
+        
+        // something went wrong 
+        return render(text: error as JSON, 
+            contentType: "application/json", status: HttpServletResponse.SC_BAD_REQUEST)
     }
     
 }

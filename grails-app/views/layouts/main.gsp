@@ -23,35 +23,49 @@
         </div>
     </div>
 
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
+            
             <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
                 <a class="navbar-brand" href="${createLink(uri: '/')}">
                     BMr
                 </a>
             </div>
-            <div class="collapse navbar-collapse">
-                <p class="navbar-text">
-                    <g:link controller="home" action="history">History</g:link>
-                </p>
-                <p class="navbar-text">
-                    <g:link controller="api">API</g:link>
-                </p>
-                <p class="navbar-text navbar-right">
+            
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <g:link controller="home" action="history">History</g:link>
+                    </li>
+                    <li>
+                        <g:link controller="api">API</g:link>
+                    </li>
+                </ul>
+                
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <sec:ifLoggedIn>
+                            <a href="${createLink(uri: '/')}">
+                                Signed in as 
+                                <strong><sec:loggedInUserInfo field="username"/></strong>
+                            </a>
+                        </sec:ifLoggedIn>
+                        <sec:ifNotLoggedIn>
+                            <g:link controller="login">Sign In</g:link>
+                        </sec:ifNotLoggedIn>
+                    </li>
                     <sec:ifLoggedIn>
+                    <li>
                         <g:link controller="logout">Logout</g:link>
+                    </li>
                     </sec:ifLoggedIn>
-                </p>
-                <p class="navbar-text navbar-right">
-                    <sec:ifLoggedIn>
-                        Signed in as 
-                        <strong><sec:loggedInUserInfo field="username"/></strong>
-                        
-                    </sec:ifLoggedIn>
-                    <sec:ifNotLoggedIn>
-                        <g:link controller="login">Sign In</g:link>
-                    </sec:ifNotLoggedIn>
-                </p>
+                </ul>
             </div>
         </div>
     </nav>

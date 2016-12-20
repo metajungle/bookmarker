@@ -34,4 +34,24 @@ class ApiService {
         }
         return false
     }
+    
+    /**
+     * Return saved bookmarks 
+     *
+     * @param token
+     * @param limit
+     */ 
+    def getBookmarks(String token, int limit) {
+        if (token != null) {
+            def apiToken = ApiToken.findByToken(token)
+            if (apiToken != null) {
+                def user = apiToken.getUser()
+                // get bookmarks
+                return Bookmark.findAllByUser(user, 
+                    [sort: "dateCreated", order: "desc", max: limit])
+            }
+        }
+        return []
+    }
+    
 }

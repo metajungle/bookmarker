@@ -92,8 +92,8 @@ dataSource:
     pooled: true
     jmxExport: true
     driverClassName: com.mysql.jdbc.Driver
-    username: minerva
-    password: "#iai#minerva#"
+    username: "${DB_USER}"
+    password: "${DB_PASS}"
 
 environments:
     development:
@@ -107,8 +107,10 @@ environments:
             url: jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
     production:
         dataSource:
-            dbCreate: none
-            url: jdbc:mysql://localhost/bookmarker?useUnicode=yes
+            dbCreate: update
+            url: "jdbc:mysql://${DB_HOST}/${DB_NAME}?useUnicode=yes"
+            username: "${DB_USER}"
+            password: "${DB_PASS}"
             # url: jdbc:h2:./prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
             properties:
                 jmxEnabled: true
