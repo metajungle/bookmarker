@@ -18,7 +18,7 @@
     <div class="jumbotron">
         <div class="container">
             <h1>
-                Bookmarker
+                Bookmarkr
             </h1>
         </div>
     </div>
@@ -33,6 +33,9 @@
             <div class="collapse navbar-collapse">
                 <p class="navbar-text">
                     <g:link controller="home" action="history">History</g:link>
+                </p>
+                <p class="navbar-text">
+                    <g:link controller="api">API</g:link>
                 </p>
                 <p class="navbar-text navbar-right">
                     <sec:ifLoggedIn>
@@ -52,16 +55,16 @@
             </div>
         </div>
     </nav>
+    
+    <asset:javascript src="application.js"/>
 
     <div class="container">
         <g:layoutBody/>
 
         <div class="page-footer">
-            Bookmarker
+            Bookmarkr
         </div>
     </div>
-
-    <asset:javascript src="application.js"/>
 
 </body>
 </html>

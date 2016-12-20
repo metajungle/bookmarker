@@ -34,6 +34,16 @@ body {
     background-color: $color-grey;
 }
 
+.table-documentation {
+    thead {
+        tr {
+            th {
+                width: 33%;
+            }
+        }
+    }
+}
+
 div.page-footer {
     margin-top: 40px;
     padding: 20px;
