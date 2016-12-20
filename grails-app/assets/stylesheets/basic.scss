@@ -1,3 +1,4 @@
+$color-background: #ffffff;
 $color-grey: #f0f0f0;
 
 body {
@@ -5,6 +6,32 @@ body {
     padding: 0px;
 }
 
+.jumbotron {
+    margin-bottom: 0px;
+    padding: 10px 0px;
+}
+
+.navbar {
+    border-top: 0px;
+    border-radius: 0px;
+}
+
+.navbar-default {
+    border-color: $color-background;
+}
+
+.container-center {
+    width: 600px;
+    margin: auto;
+}
+
 .header {
     background-color: $color-grey;
+}
+
+div.page-footer {
+    margin-top: 40px;
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid $color-grey;
 }

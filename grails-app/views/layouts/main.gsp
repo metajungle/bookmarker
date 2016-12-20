@@ -23,10 +23,32 @@
         </div>
     </div>
 
-    <%-- login --%>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    BMd
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <p class="navbar-text navbar-right">
+                    <sec:ifLoggedIn>
+                        Signed in as <a href="#" class="navbar-link">Mark Otto</a>
+                    </sec:ifLoggedIn>
+                    <sec:ifNotLoggedIn>
+                        <g:link controller="login">Sign In</g:link>
+                    </sec:ifNotLoggedIn>
+                </p>
+            </div>
+        </div>
+    </nav>
 
     <div class="container">
         <g:layoutBody/>
+
+        <div class="page-footer">
+            Bookmarker
+        </div>
     </div>
 
     <asset:javascript src="application.js"/>
